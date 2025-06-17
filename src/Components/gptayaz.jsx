@@ -271,12 +271,7 @@ Visit: https://gpt.ayaz.dev`,
                         </a>
                     </div>
 
-                    <button
-                        onClick={toggleTheme}
-                        className="p-2 rounded-full border border-[#222] hover:bg-[#222] transition-colors"
-                    >
-                        {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-                    </button>
+ 
                 </nav>
 
                 {/* Mobile Navigation */}
