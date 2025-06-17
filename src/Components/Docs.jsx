@@ -1,10 +1,12 @@
 import React from "react";
 
 const Docs = ({ theme }) => (
-    <section id="docs" className={`py-20 ${theme === 'dark' ? 'bg-[#181818]' : 'bg-white'}`}>
-        <div className="max-w-4xl mx-auto px-6">
-            <h2 className={`text-4xl font-bold text-center mb-10 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>Documentation</h2>
-            <div className={`rounded-lg border shadow-xl p-8 ${theme === 'dark' ? 'border-[#222] bg-[#181818] text-white' : 'border-gray-200 bg-white text-gray-900'}`}>
+    <section id="docs" className={`py-12 sm:py-20 ${theme === 'dark' ? 'bg-[#181818]' : 'bg-white'}`}>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+            <h2 className={`text-3xl sm:text-4xl font-bold text-center mb-6 sm:mb-10 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+                Documentation
+            </h2>
+            <div className={`rounded-lg border shadow-xl p-4 sm:p-8 ${theme === 'dark' ? 'border-[#222] bg-[#181818] text-white' : 'border-gray-200 bg-white text-gray-900'}`}>
                 <h3 className="text-2xl font-semibold mb-4 text-orange-400">What is GPT.AYAZ?</h3>
                 <p className={`mb-6 ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
                     <b className={theme === 'dark' ? 'text-white' : 'text-gray-900'}>GPT.AYAZ</b> is an AI-powered development hub that provides code generation, documentation, bug detection, architecture planning, and more—all in an interactive, terminal-inspired web interface.

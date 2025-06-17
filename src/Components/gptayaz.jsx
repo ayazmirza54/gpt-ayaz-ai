@@ -10,7 +10,9 @@ import {
     ChevronRight,
     Loader,
     Play,
-    Square
+    Square,
+    Menu,
+    X
 } from 'lucide-react';
 import Docs from './Docs';
 const GPTAyazWebsite = () => {
@@ -25,6 +27,7 @@ const GPTAyazWebsite = () => {
     const [currentTextIndex, setCurrentTextIndex] = useState(0);
     const [loadingProgress, setLoadingProgress] = useState(0);
     const terminalRef = useRef(null);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const heroTexts = [
         'npm install gpt-ayaz',
@@ -232,31 +235,42 @@ Visit: https://gpt.ayaz.dev`,
     }
 
     return (
-        <div className="min-h-screen bg-[#181818] text-white ">
+        <div className="min-h-screen bg-[#181818] text-white">
             {/* Header */}
             <header className="w-full border-b border-[#222] bg-[#181818]">
-                <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+                <nav className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
                     <div className="flex items-center space-x-2">
-                        <span className="text-xl font-bold text-orange-400">GPT.AYAZ</span>
+                        <span className="text-lg sm:text-xl font-bold text-orange-400">GPT.AYAZ</span>
                     </div>
-                    <div className="flex items-center gap-8">
+
+                    {/* Mobile menu button */}
+                    <button
+                        className="sm:hidden p-2 rounded-md hover:bg-[#222]"
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    >
+                        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
+
+                    {/* Desktop Navigation */}
+                    <div className="hidden sm:flex items-center gap-4 md:gap-8">
                         <a href="#home" className="flex items-center gap-1 hover:text-orange-400 font-bold">
                             <Home size={18} className="text-orange-400" />
-                            home
+                            <span className="hidden md:inline">home</span>
                         </a>
                         <a href="#code" className="flex items-center gap-1 hover:text-orange-400">
                             <Code size={18} className="text-orange-400" />
-                            code
+                            <span className="hidden md:inline">code</span>
                         </a>
                         <a href="#terminal" className="flex items-center gap-1 hover:text-orange-400">
                             <Terminal size={18} className="text-orange-400" />
-                            terminal
+                            <span className="hidden md:inline">terminal</span>
                         </a>
                         <a href="#docs" className="flex items-center gap-1 hover:text-orange-400">
                             <FileText size={18} className="text-orange-400" />
-                            docs
+                            <span className="hidden md:inline">docs</span>
                         </a>
                     </div>
+
                     <button
                         onClick={toggleTheme}
                         className="p-2 rounded-full border border-[#222] hover:bg-[#222] transition-colors"
@@ -264,16 +278,38 @@ Visit: https://gpt.ayaz.dev`,
                         {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
                     </button>
                 </nav>
+
+                {/* Mobile Navigation */}
+                {isMobileMenuOpen && (
+                    <div className="sm:hidden px-4 py-2 space-y-2 border-t border-[#222]">
+                        <a href="#home" className="flex items-center gap-2 p-2 hover:bg-[#222] rounded-md">
+                            <Home size={18} className="text-orange-400" />
+                            <span>home</span>
+                        </a>
+                        <a href="#code" className="flex items-center gap-2 p-2 hover:bg-[#222] rounded-md">
+                            <Code size={18} className="text-orange-400" />
+                            <span>code</span>
+                        </a>
+                        <a href="#terminal" className="flex items-center gap-2 p-2 hover:bg-[#222] rounded-md">
+                            <Terminal size={18} className="text-orange-400" />
+                            <span>terminal</span>
+                        </a>
+                        <a href="#docs" className="flex items-center gap-2 p-2 hover:bg-[#222] rounded-md">
+                            <FileText size={18} className="text-orange-400" />
+                            <span>docs</span>
+                        </a>
+                    </div>
+                )}
             </header>
 
             {/* Hero Section */}
-            <section id="home" className="pt-20 min-h-screen flex items-center justify-center relative overflow-hidden">
+            <section id="home" className="pt-12 sm:pt-20 min-h-screen flex items-center justify-center relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-900/20 via-transparent to-orange-900/20" />
-                <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-                    <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-orange-400 to-orange-400 bg-clip-text text-transparent">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
+                    <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-orange-400 to-orange-400 bg-clip-text text-transparent">
                         GPT.AYAZ
                     </h1>
-                    <p className="text-xl md:text-2xl text-gray-400 mb-12">
+                    <p className="text-lg sm:text-xl md:text-2xl text-gray-400 mb-8 sm:mb-12">
                         ONE STOP SHOP FOR ALL YOUR AI NEEDS
                     </p>
                     {/* Terminal Window */}
@@ -296,11 +332,11 @@ Visit: https://gpt.ayaz.dev`,
             </section>
 
             {/* Code Snippets Section */}
-            <section id="code" className="py-20">
-                <div className="max-w-6xl mx-auto px-6">
-                    <h2 className="text-4xl font-bold text-center mb-16">Prompt Snippets</h2>
+            <section id="code" className="py-12 sm:py-20">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6">
+                    <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-16">Prompt Snippets</h2>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
                         {codeSnippets.map((snippet, index) => (
                             <div key={index} className="rounded-lg border border-[#222] bg-[#181818] overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
                                 {/* Code Header */}
@@ -326,9 +362,9 @@ Visit: https://gpt.ayaz.dev`,
             </section>
 
             {/* Interactive Terminal Section */}
-            <section id="terminal" className="py-20">
-                <div className="max-w-4xl mx-auto px-6">
-                    <h2 className="text-4xl font-bold text-center mb-16">Interactive Terminal</h2>
+            <section id="terminal" className="py-12 sm:py-20">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6">
+                    <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-16">Interactive Terminal</h2>
 
                     <div className="rounded-lg border border-[#222] bg-[#181818] shadow-2xl overflow-hidden">
                         {/* Terminal Header */}
@@ -384,9 +420,9 @@ Visit: https://gpt.ayaz.dev`,
             <Docs theme={theme} />
 
             {/* Footer */}
-            <footer className="py-12 border-t border-[#222] bg-[#181818]">
-                <div className="max-w-6xl mx-auto px-6 text-center">
-                    <p className="text-gray-400 ">
+            <footer className="py-8 sm:py-12 border-t border-[#222] bg-[#181818]">
+                <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+                    <p className="text-sm sm:text-base text-gray-400">
                         Built with React + Vite | GPT.AYAZ v2.0
                     </p>
                 </div>
